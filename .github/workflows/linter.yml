@@ -23,15 +23,13 @@ jobs:
   lint:
     name: Super-Linter
     runs-on: ubuntu-latest
-
     steps:
-     - name: Checkout Code
+      - name: Checkout Code
         uses: actions/checkout@v2.3.4
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
     
-      # custom DEFAULT_BRANCH for repos where PR target isn't always main/master
       - name: Set DEFAULT_BRANCH to PR target
         if: ${{ github.base_ref != '' }}
         run: |
@@ -46,7 +44,6 @@ jobs:
           echo "DEFAULT_BRANCH=$(echo '${{ github.ref }}' | sed 's/refs\/heads\///')" >> $GITHUB_ENV
           echo "this is just a branch push, not a PR."
       
-      # used as a debug step to ensure we're only linting all files on release branches
       - name: Are we linting all files?
         run: |
           echo VALIDATE_ALL_CODEBASE=${{ !contains(github.event_name, 'pull_request') }}
@@ -57,7 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: ${{ env.DEFAULT_BRANCH }}
           VALIDATE_ALL_CODEBASE: ${{ !contains(github.event_name, 'pull_request') }}
-          VALIDATE_DOCKERFILE: false 
+          VALIDATE_DOCKERFILE: false
           VALIDATE_SHELL_SHFMT: false
           VALIDATE_EDITORCONFIG: false
-          KUBERNETES_KUBEVAL_OPTIONS: --ignore-missing-schemas          
+          KUBERNETES_KUBEVAL_OPTIONS: --ignore-missing-schemas
