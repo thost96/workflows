@@ -2,8 +2,6 @@ name: Docker Image Build and Push
 
 on:
   release:
-  schedule:
-    - cron: "0 0 * * 0"
   workflow_call:
      
 permissions:
