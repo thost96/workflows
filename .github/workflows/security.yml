@@ -23,6 +23,7 @@ permissions:
   security-events: none     #read/write to repo Security tab API
   statuses: write           #read/write to repo custom statuses and checks
 
+
 jobs:
   scan:
     name: Setup  
