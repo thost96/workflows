@@ -1,0 +1,48 @@
+name: Docker Image Build and Push
+
+on:
+  release:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_call:
+     
+permissions:
+  actions: none
+  checks:  none             #add custom pass/fail checks to the PR
+  contents: read            #git permissions to repo pull/push
+  deployments: none
+  issues: none              #read/write to repo Issues
+  packages: none            #read/write to repo Packages (ghcr, gems, npm)
+  pull-requests: none       #read/write to repo PRs
+  repository-projects: none
+  security-events: none     #read/write to repo Security tab API
+  statuses: write           #read/write to repo custom statuses and checks
+
+jobs:
+  build:
+    name: ${{ github.event.repository.name }} ${{ matrix.tag }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:   
+        tag: [ latest ]
+    steps:
+      - uses: actions/checkout@v1
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Docker Image Build
+        uses: docker/build-push-action@v2
+        with:
+            push: true
+            tags: |
+              ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.tag }}      
+            build-args: |
+              TAG=${{matrix.tag}}
