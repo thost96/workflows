@@ -48,7 +48,7 @@ jobs:
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.tag }}
         
       - name: Trivy
-        uses: homoluctus/gitrivy@v2  
+        uses: homoluctus/gitrivy@v3  
         with:
           issue: false
           image: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.tag }}
