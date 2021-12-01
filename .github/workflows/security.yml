@@ -58,7 +58,7 @@ jobs:
           run: docker pull ${{ secrets.DOCKER_USERNAME }}/{{ steps.image-name.outputs.substring }}:${{ matrix.tag }}
 
         - name: Trivy Action
-          uses: homoluctus/gitrivy@v2
+          uses: homoluctus/gitrivy@v3
           with:
             issue: false
             image: ${{ secrets.DOCKER_USERNAME }}/{{ steps.image-name.outputs.substring }}:${{ matrix.tag }}
