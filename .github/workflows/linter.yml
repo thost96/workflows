@@ -48,7 +48,7 @@ jobs:
           echo VALIDATE_ALL_CODEBASE=${{ !contains(github.event_name, 'pull_request') }}
 
       - name: Lint Code Base
-        uses: github/super-linter@v4.8.1
+        uses: github/super-linter@v4.8.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: ${{ env.DEFAULT_BRANCH }}
