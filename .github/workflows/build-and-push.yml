@@ -1,8 +1,8 @@
+---
 name: Docker Image Build and Push
 
 on:
   release:
-  workflow_call:
      
 permissions:
   actions: none

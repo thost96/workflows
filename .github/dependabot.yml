@@ -1,3 +1,4 @@
+---
 version: 2
 updates:
   # Maintain dependencies for GitHub Actions
@@ -9,4 +10,6 @@ updates:
   - package-ecosystem: docker
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: daily
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 10
