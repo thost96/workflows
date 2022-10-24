@@ -36,8 +36,7 @@ jobs:
           with:
             value: ${{ github.event.repository.name }}
             index_of_str: "docker-"
-          # steps.image-name.outputs.substring = 'c123'
-     
+
         - uses: actions/checkout@v3
         
         - name: Login to DockerHub
@@ -62,4 +61,4 @@ jobs:
           with:
             issue: false
             image: ${{ secrets.DOCKER_USERNAME }}/{{ steps.image-name.outputs.substring }}:${{ matrix.tag }}
-            token: ${{ secrets.GITHUB_TOKEN }}
+            token: ${{ secrets.TOKEN }}

@@ -28,21 +28,21 @@ jobs:
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
-    
+
       - name: Set DEFAULT_BRANCH to PR target
         if: ${{ github.base_ref != '' }}
         run: |
           # shellcheck disable=2086
           echo "DEFAULT_BRANCH=${{ github.base_ref }}" >> $GITHUB_ENV
           echo "this is a PR branch. Let's only lint the files that are changed against the target branch '${{ github.base_ref }}'"
-      
+
       - name: Set DEFAULT_BRANCH to current branch
         if: ${{ github.base_ref == '' }}
         run: |
           # shellcheck disable=2086
           echo "DEFAULT_BRANCH=$(echo '${{ github.ref }}' | sed 's/refs\/heads\///')" >> $GITHUB_ENV
           echo "this is just a branch push, not a PR."
-      
+
       - name: Are we linting all files?
         run: |
           echo VALIDATE_ALL_CODEBASE=${{ !contains(github.event_name, 'pull_request') }}
@@ -50,7 +50,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v4.9.6
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           DEFAULT_BRANCH: ${{ env.DEFAULT_BRANCH }}
           VALIDATE_ALL_CODEBASE: ${{ !contains(github.event_name, 'pull_request') }}
           VALIDATE_DOCKERFILE: false
