@@ -2,8 +2,8 @@
 # .ansible-lint
 profile: production
 exclude_paths:
-  - .cache/ # implicit unless exclude_paths is defined in config
+  - .cache/
   - .github/
 parseable: true
-#skip_list:
+# skip_list:
 #  - skip_this_tag
