@@ -5,5 +5,3 @@ exclude_paths:
   - .cache/
   - .github/
 parseable: true
-# skip_list:
-#  - skip_this_tag
