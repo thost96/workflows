@@ -6,7 +6,7 @@ on:
      
 permissions:
   actions: none
-  checks:  none             #add custom pass/fail checks to the PR
+  checks: none             #add custom pass/fail checks to the PR
   contents: read            #git permissions to repo pull/push
   deployments: none
   issues: none              #read/write to repo Issues
@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:   
-        tag: [ latest ]
+        tag: [latest]
     steps:
       - uses: actions/checkout@v3
 
@@ -39,8 +39,8 @@ jobs:
       - name: Docker Image Build
         uses: docker/build-push-action@v4
         with:
-            push: true
-            tags: |
-              ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.tag }}      
-            build-args: |
-              TAG=${{matrix.tag}}
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.tag }}
+          build-args: |
+            TAG=${{matrix.tag}}

@@ -7,7 +7,7 @@ name: Lint Code Base
 
 permissions:
   actions: none
-  checks:  none             #add custom pass/fail checks to the PR
+  checks: none             #add custom pass/fail checks to the PR
   contents: read            #git permissions to repo pull/push
   deployments: none
   issues: none              #read/write to repo Issues
@@ -32,7 +32,7 @@ jobs:
         run: |
           # shellcheck disable=2086
           echo "DEFAULT_BRANCH=${{ github.base_ref }}" >> $GITHUB_ENV
-          echo "this is a PR branch. Let's only lint the files that are changed against the target branch '${{ github.base_ref }}'"
+          echo "this is a PR branch. only lint files that are changed"
 
       - name: Set DEFAULT_BRANCH to current branch
         if: ${{ github.base_ref == '' }}
