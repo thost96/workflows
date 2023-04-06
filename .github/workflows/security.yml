@@ -28,9 +28,9 @@ jobs:
   security-check:
     runs-on: ubuntu-latest
       strategy:
-      fail-fast: false
-      matrix:
-        tag: [latest]
+        fail-fast: false
+        matrix:
+          tag: [latest]
       steps:
         - uses: bhowell2/github-substring-action@1.0.1
           id: image-name
