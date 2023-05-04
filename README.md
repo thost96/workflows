@@ -1,4 +1,4 @@
-# GitHub Workflows Repo
+# GitHub Workflows repository
 
 ## super-linter
 
