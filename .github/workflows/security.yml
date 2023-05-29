@@ -32,7 +32,7 @@ jobs:
       matrix:
         tag: [latest]
     steps:
-      - uses: bhowell2/github-substring-action@1.0.1
+      - uses: bhowell2/github-substring-action@1.0.2
         id: image-name
         with:
           value: ${{ github.event.repository.name }}
