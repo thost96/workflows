@@ -41,6 +41,8 @@ jobs:
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ matrix.tag }}
+            ${{ secrets.DOCKER_USERNAME }}/
+            ${{ github.event.repository.name }}:
+            ${{ matrix.tag }}
           build-args: |
             TAG=${{matrix.tag}}
